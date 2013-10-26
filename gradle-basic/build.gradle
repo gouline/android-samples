@@ -18,21 +18,21 @@ apply plugin: 'maven'
 apply plugin: 'android'
 apply plugin: 'eclipse'
 
+// Build configurations
+configurations {
+    compile
+}
+
 // Repositories to use for application wide
 // dependency resolution
 repositories {
     mavenCentral()
 }
 
-// Build configurations
-configurations {
-    compile
-}
-
 // Dependencies of your whole application
 dependencies {
     // Compile local JARs
-    compile 'com.android.support:support-v4:18.0.+'
+    compile files('./libs/android-support-v4.jar')
 
     // Compile resolved dependencies
     compile 'org.apache.commons:commons-lang3:3.1'
