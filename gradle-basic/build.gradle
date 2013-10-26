@@ -1,0 +1,153 @@
+
+// Configuration of the actual build script
+buildscript {
+    // Repositories that your build script will use
+    // for dependency resolution
+    repositories { 
+        mavenCentral()
+    }
+
+    // Dependencies of your build script, mostly plugins
+    dependencies { 
+        classpath 'com.android.tools.build:gradle:0.6.1'
+    }
+}
+
+// List of plugins to apply
+apply plugin: 'maven'
+apply plugin: 'android'
+apply plugin: 'eclipse'
+
+// Repositories to use for application wide
+// dependency resolution
+repositories {
+    mavenCentral()
+}
+
+// Build configurations
+configurations {
+    compile
+}
+
+// Dependencies of your whole application
+dependencies {
+    // Compile local JARs
+    compile 'com.android.support:support-v4:18.0.+'
+
+    // Compile resolved dependencies
+    compile 'org.apache.commons:commons-lang3:3.1'
+}
+
+// Android plugin settings
+android {
+    // Target SDK (must be installed locally§)
+    compileSdkVersion = 'android-18'
+    // Build tools version (must be installed locally)
+    buildToolsVersion = '18.1.1'
+
+    // Source sets define where all your
+    // source files and resources are located
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+    }
+
+    // Global configuration that apply to
+    // all build types
+    defaultConfig {
+        packageName = 'org.gouline.android.gradle'
+        versionCode = 1
+        versionName = '1.0.0'
+        minSdkVersion = 8
+        targetSdkVersion = 18
+        proguardFile getDefaultProguardFile('proguard-android.txt')
+    }
+    
+    // Signing configurations
+    signingConfigs {
+    
+        // Sample release configuration, will not work without file
+        // (release.keystore is not included)
+        release {
+            storeFile file('release.keystore')
+            storePassword 'android'
+            keyAlias 'releasekey'
+            keyPassword 'android'
+        }
+    }
+
+    // Build configurations that generate build
+    // tasks, e.g. assembleDebug, assembleRelease
+    buildTypes {
+
+        // Debug configuration for development
+        debug {
+            debuggable = true
+            runProguard = false
+        }
+
+        // Release configuration
+        release {
+            debuggable = false
+            runProguard = true
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+// Including configurations into Eclipse
+eclipse.classpath.plusConfigurations += configurations.compile
+eclipse.classpath.plusConfigurations += configurations.instrumentTestCompile
+
+// Configuring Eclipse classpath
+eclipse.classpath.file {
+
+    // Manipulation of the classpath XML before merging local
+    // and generated copies
+    beforeMerged { classpath ->
+        // Remove all source entries to avoid overlap
+        classpath.entries.removeAll() { c -> 
+            c.kind == 'src'
+        }
+    }
+
+    // Direct manipulation of the generated classpath XML
+    withXml {
+        // Since non-default source directories are used
+        // they need to be manually added to the classpath XML
+        def node = it.asNode()
+
+        // Main source directory
+        node.appendNode('classpathentry kind="src" path="src/main/java"')
+        // Debug build type source directory
+        node.appendNode('classpathentry kind="src" path="src/debug/java"')
+        // Generated code directory
+        node.appendNode('classpathentry kind="src" path="gen"')
+
+        // Filter out dependencies unwanted for Eclipse
+        node.children().removeAll() { c ->
+            def path = c.attribute('path')
+            path != null && (
+                    // Since the support library may be resolved remotely
+                    // the local version in the libs directory must be ignored
+                    path.contains('/com.google.android/support-v4')
+                    )
+        }
+    }
+}
+
+// Configuring Eclipse project
+eclipse.project {
+
+    // Project name that will appear in your project explorer
+    name = 'AndroidGradleBasic'
+
+    // Letting Eclipse know that the project is Android
+    natures 'com.android.ide.eclipse.adt.AndroidNature'
+    buildCommand 'com.android.ide.eclipse.adt.ResourceManagerBuilder'
+    buildCommand 'com.android.ide.eclipse.adt.PreCompilerBuilder'
+    buildCommand 'com.android.ide.eclipse.adt.ApkBuilder'
+}
