@@ -100,7 +100,6 @@ android {
 
 // Including configurations into Eclipse
 eclipse.classpath.plusConfigurations += configurations.compile
-eclipse.classpath.plusConfigurations += configurations.instrumentTestCompile
 
 // Configuring Eclipse classpath
 eclipse.classpath.file {
