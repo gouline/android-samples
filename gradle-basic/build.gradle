@@ -132,7 +132,7 @@ eclipse.classpath.file {
             path != null && (
                     // Since the support library may be resolved remotely
                     // the local version in the libs directory must be ignored
-                    path.contains('/com.google.android/support-v4')
+                    path.contains('/com.android.support/support-v4')
                     )
         }
     }
