@@ -1,4 +1,4 @@
-package org.gouline.android.gradle;
+package net.gouline.android.gradle;
 
 /**
  * Environment-specific configuration.

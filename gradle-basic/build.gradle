@@ -58,7 +58,7 @@ android {
     // Global configuration that apply to
     // all build types
     defaultConfig {
-        packageName = 'org.gouline.android.gradle'
+        packageName = 'net.gouline.android.gradle'
         versionCode = 1
         versionName = '1.0.0'
         minSdkVersion = 8
