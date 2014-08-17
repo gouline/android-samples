@@ -3,14 +3,12 @@ package net.gouline.kotlindemo.kt.app
 import android.app.Activity
 import android.os.Bundle
 import net.gouline.kotlindemo.R
-import kotlin.properties.Delegates
 import android.net.wifi.WifiManager
 import android.content.Context
 import android.widget.Toast
 import android.content.BroadcastReceiver
 import android.content.IntentFilter
 import android.content.Intent
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 

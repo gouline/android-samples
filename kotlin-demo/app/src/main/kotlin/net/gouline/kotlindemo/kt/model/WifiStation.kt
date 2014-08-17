@@ -9,11 +9,12 @@ import java.util.ArrayList
  *
  * @author Mike Gouline
  */
+
 data class WifiStation(
         val ssid: String?,
         val bssid: String?,
         val frequency: Int,
-        val level: Int): Serializable {
+        val level: Int) : Serializable {
     class object {
         fun newInstance(sr: ScanResult): WifiStation {
             return WifiStation(

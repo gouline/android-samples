@@ -11,8 +11,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import net.gouline.kotlindemo.R
 import android.widget.TextView
-import kotlin.properties.Delegates
-import butterknife.ButterKnife
 
 /**
  * Fragment for listing Wi-Fi base stations.
@@ -55,7 +53,7 @@ open class WifiListFragment() : ListFragment() {
     /**
      * Array adapter for stations.
      */
-    class WifiListAdapter(context: Context): ArrayAdapter<WifiStation>(context, 0) {
+    class WifiListAdapter(context: Context) : ArrayAdapter<WifiStation>(context, 0) {
         val inflater = LayoutInflater.from(context)
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {

@@ -3,14 +3,11 @@ package net.gouline.kotlindemo.kt.app
 import android.app.Activity
 import android.widget.Button
 import android.os.Bundle
-import net.gouline.kotlindemo.kt
 import android.view.Menu
 import android.view.MenuItem
 import android.content.Intent
 import net.gouline.kotlindemo.R
-import butterknife.ButterKnife
 import android.widget.Toast
-import kotlin.properties.Delegates
 
 /**
  * Welcome activity.
