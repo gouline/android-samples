@@ -12,10 +12,15 @@ import java.util.ArrayList
 
 data class WifiStation(
         val ssid: String?,
-        val bssid: String?,
-        val frequency: Int,
-        val level: Int) : Serializable {
+        val bssid: String? = null,
+        val frequency: Int? = null,
+        val level: Int? = null) : Serializable {
     class object {
+        /**
+         * Creates a new instance from a scan result.
+         *
+         * @param sr A scan result.
+         */
         fun newInstance(sr: ScanResult): WifiStation {
             return WifiStation(
                     ssid = sr.SSID,

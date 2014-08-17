@@ -18,10 +18,9 @@ import android.view.MenuItem
  * @author Mike Gouline
  */
 open class WifiActivity() : Activity() {
-    private var wifiManager: WifiManager? = null
-
     private var listFragment: WifiListFragment? = null
 
+    private var wifiManager: WifiManager? = null
     private val wifiReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val results = wifiManager?.getScanResults()
@@ -66,18 +65,20 @@ open class WifiActivity() : Activity() {
 
     override fun onResume() {
         super<Activity>.onResume()
-
         registerReceiver(wifiReceiver, IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION))
         refresh()
     }
 
     override fun onPause() {
         unregisterReceiver(wifiReceiver)
-
         super<Activity>.onPause()
     }
 
+    /**
+     * Refresh list.
+     */
     fun refresh() {
+        listFragment?.clearItems()
         wifiManager?.startScan()
     }
 }

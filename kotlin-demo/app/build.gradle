@@ -13,7 +13,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    buildToolsVersion "20.0.0"
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -27,6 +27,12 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            runProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
+
         release {
             runProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),

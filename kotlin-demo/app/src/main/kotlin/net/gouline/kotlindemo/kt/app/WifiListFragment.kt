@@ -43,11 +43,22 @@ open class WifiListFragment() : ListFragment() {
      *
      * @param stations List of scan results.
      */
-    fun updateItems(stations: List<ScanResult>) {
+    fun updateItems(stations: List<ScanResult>? = null) {
         val adapter = getListAdapter() as WifiListAdapter
         adapter.clear()
-        adapter.addAll(WifiStation.newList(stations))
+        if (stations != null) {
+            val emptyVisible: Int = if (stations.size() > 0) View.VISIBLE else View.GONE
+            emptyView?.setVisibility(emptyVisible)
+            adapter.addAll(WifiStation.newList(stations))
+        }
         adapter.notifyDataSetChanged()
+    }
+
+    /**
+     * Clears adapter items and calls notify.
+     */
+    fun clearItems() {
+        updateItems()
     }
 
     /**
