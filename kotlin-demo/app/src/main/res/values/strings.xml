@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Kotlin Demo</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_scan_wifi">Wi-Fi Scan</string>
+
+    <string name="prompt_settings_not_implemented">Settings not implemented</string>
+
+    <string name="welcome_title">Welcome to the Kotlin Demo!</string>
+    <string name="welcome_message">This application is intended to scan nearby Wi-Fi base stations and give you basic information about each one.</string>
+
+</resources>
