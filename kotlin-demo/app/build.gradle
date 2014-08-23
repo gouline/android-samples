@@ -1,5 +1,6 @@
 buildscript {
     ext.kotlin_version = '0.8.11'
+    ext.rxjava_version = '0.20.0'
     repositories {
         mavenCentral()
     }
@@ -17,6 +18,9 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        debug.java.srcDirs += 'src/debug/kotlin'
+        release.java.srcDirs += 'src/release/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
 
     defaultConfig {
@@ -48,5 +52,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    compile 'com.jakewharton:butterknife:5.1.2'
+    compile "com.netflix.rxjava:rxjava-core:$rxjava_version"
+    compile "com.netflix.rxjava:rxjava-android:$rxjava_version"
+    compile "com.netflix.rxjava:rxjava-kotlin:$rxjava_version"
 }

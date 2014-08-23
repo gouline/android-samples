@@ -1,4 +1,4 @@
-package net.gouline.kotlindemo.kt.model
+package net.gouline.kotlindemo.model
 
 import java.io.Serializable
 import android.net.wifi.ScanResult
@@ -9,7 +9,6 @@ import java.util.ArrayList
  *
  * @author Mike Gouline
  */
-
 data class WifiStation(
         val ssid: String?,
         val bssid: String? = null,

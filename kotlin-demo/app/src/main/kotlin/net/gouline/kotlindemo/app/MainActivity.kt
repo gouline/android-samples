@@ -1,4 +1,4 @@
-package net.gouline.kotlindemo.kt.app
+package net.gouline.kotlindemo.app
 
 import android.app.Activity
 import android.widget.Button

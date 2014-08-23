@@ -9,6 +9,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_scan_wifi">Wi-Fi Scan</string>
 
+    <string name="prompt_loading">Loading&#8230;</string>
     <string name="prompt_settings_not_implemented">Settings not implemented</string>
     <string name="prompt_enabling_wifi">Enabling Wi-Fi&#8230;</string>
 

@@ -1,4 +1,4 @@
-package net.gouline.kotlindemo.kt.app
+package net.gouline.kotlindemo.app
 
 import android.app.Activity
 import android.os.Bundle
@@ -11,6 +11,8 @@ import android.content.IntentFilter
 import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
+import net.gouline.kotlindemo.model.WifiStation
+import android.app.Fragment
 
 /**
  * Root activity for Wi-Fi list and details.
@@ -19,12 +21,15 @@ import android.view.MenuItem
  */
 open class WifiActivity() : Activity() {
     private var listFragment: WifiListFragment? = null
+    private var detailFragment: WifiDetailFragment? = null
+
+    private var listFragmentVisible: Boolean = false
 
     private var wifiManager: WifiManager? = null
     private val wifiReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val results = wifiManager?.getScanResults()
-            if (results != null) {
+            if (listFragmentVisible && results != null) {
                 listFragment?.updateItems(results)
             }
         }
@@ -35,12 +40,7 @@ open class WifiActivity() : Activity() {
         setContentView(R.layout.activity_wifi)
         setTitle(R.string.title_wifi)
 
-        listFragment = WifiListFragment.newInstance()
-
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.layout_frame, listFragment!!)
-                .commit()
+        transitionToList()
 
         wifiManager = getSystemService(Context.WIFI_SERVICE) as WifiManager
         if (wifiManager?.isWifiEnabled() == false) {
@@ -57,7 +57,7 @@ open class WifiActivity() : Activity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val id = item?.getItemId()
         if (id == R.id.action_refresh) {
-            refresh()
+            refreshList()
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -66,7 +66,16 @@ open class WifiActivity() : Activity() {
     override fun onResume() {
         super<Activity>.onResume()
         registerReceiver(wifiReceiver, IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION))
-        refresh()
+    }
+
+    fun onResumeFragment(fragment: Fragment) {
+        listFragmentVisible = false
+
+        if (fragment == listFragment) {
+            listFragmentVisible = true
+
+            refreshList()
+        }
     }
 
     override fun onPause() {
@@ -74,10 +83,29 @@ open class WifiActivity() : Activity() {
         super<Activity>.onPause()
     }
 
+    fun transition(fragment: Fragment, add: Boolean = false) {
+        val transaction = getFragmentManager().beginTransaction()
+        transaction.replace(R.id.layout_frame, fragment)
+        if (add) {
+            transaction.addToBackStack(null)
+        }
+        transaction.commit()
+    }
+
+    fun transitionToList() {
+        listFragment = WifiListFragment.newInstance()
+        transition(listFragment!!)
+    }
+
+    fun transitionToDetail(item: WifiStation?) {
+        detailFragment = WifiDetailFragment.newInstance()
+        transition(detailFragment!!, add = true)
+    }
+
     /**
-     * Refresh list.
+     * Refreshes list.
      */
-    fun refresh() {
+    private fun refreshList() {
         listFragment?.clearItems()
         wifiManager?.startScan()
     }

@@ -4,5 +4,5 @@
 /.idea/libraries
 .DS_Store
 /build
-/java_pid**.hprof
+java_pid**.hprof
 

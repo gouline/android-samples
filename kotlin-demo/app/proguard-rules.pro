@@ -22,6 +22,9 @@
 # Kotlin
 -dontwarn kotlin.**
 
+# RxJava
+-dontwarn rx.**
+
 # Butter Knife
 -dontwarn butterknife.internal.**
 -keep class **$$ViewInjector { *; }
