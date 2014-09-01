@@ -12,7 +12,7 @@ open class KotlinTestRunner() : InstrumentationTestRunner() {
 
     override fun getAllTests(): TestSuite? {
         val suite = TestSuite()
-        suite.addTest(DummyKotlinTest())
+        suite.addTest(KotlinDummyTest())
         return suite
     }
 }

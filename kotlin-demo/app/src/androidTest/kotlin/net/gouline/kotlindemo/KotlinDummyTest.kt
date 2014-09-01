@@ -8,7 +8,7 @@ import junit.framework.Assert
  *
  * @author Mike Gouline
  */
-open class DummyKotlinTest() : AndroidTestCase() {
+open class KotlinDummyTest() : AndroidTestCase() {
 
     public fun testDummy() {
         Assert.assertTrue(true)

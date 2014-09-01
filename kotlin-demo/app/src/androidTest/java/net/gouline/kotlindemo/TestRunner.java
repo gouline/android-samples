@@ -14,7 +14,7 @@ public class TestRunner extends InstrumentationTestRunner {
     @Override
     public TestSuite getAllTests() {
         TestSuite suite = new TestSuite();
-        suite.addTest(new DummyKotlinTest());
+        suite.addTest(new KotlinDummyTest());
         return suite;
     }
 }
