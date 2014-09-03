@@ -1,6 +1,6 @@
 buildscript {
     ext.kotlin_version = '0.8.11'
-    ext.rxjava_version = '0.20.0'
+    ext.rxjava_version = '0.20.2'
     repositories {
         mavenCentral()
     }
@@ -32,7 +32,7 @@ android {
     }
     buildTypes {
         debug {
-            runProguard false
+            runProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
         }
@@ -56,5 +56,8 @@ dependencies {
 
     compile "com.netflix.rxjava:rxjava-core:$rxjava_version"
     compile "com.netflix.rxjava:rxjava-android:$rxjava_version"
-    compile "com.netflix.rxjava:rxjava-kotlin:$rxjava_version"
+    compile("com.netflix.rxjava:rxjava-kotlin:$rxjava_version") {
+        // To avoid version conflicts.
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'
+    }
 }

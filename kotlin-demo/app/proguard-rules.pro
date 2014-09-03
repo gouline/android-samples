@@ -21,6 +21,8 @@
 
 # Kotlin
 -dontwarn kotlin.**
+-keep class kotlin.jvm.**
+-keep class kotlin.reflect.**
 
 # RxJava
 -dontwarn rx.**
