@@ -8,6 +8,8 @@ import android.view.MenuItem
 import android.content.Intent
 import net.gouline.kotlindemo.R
 import android.widget.Toast
+import android.widget.TextView
+import butterknife.InjectView
 
 /**
  * Welcome activity.
@@ -16,6 +18,9 @@ import android.widget.Toast
  */
 open class MainActivity() : Activity() {
     private var scanWifiButton: Button? = null
+
+    // Injected status text view.
+    InjectView(R.id.txt_status) var statusTextView: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super<Activity>.onCreate(savedInstanceState)
@@ -26,6 +31,9 @@ open class MainActivity() : Activity() {
             startActivity(Intent(this, javaClass<WifiActivity>()))
             finish()
         })
+
+        // Setting status text view if not null.
+        statusTextView?.setText("Test status")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
