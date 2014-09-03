@@ -1,6 +1,5 @@
 package net.gouline.kotlindemo.app
 
-import android.app.Activity
 import android.widget.Button
 import android.os.Bundle
 import android.view.Menu
@@ -8,22 +7,17 @@ import android.view.MenuItem
 import android.content.Intent
 import net.gouline.kotlindemo.R
 import android.widget.Toast
-import android.widget.TextView
-import butterknife.InjectView
 
 /**
  * Welcome activity.
  *
  * @author Mike Gouline
  */
-open class MainActivity() : Activity() {
+open class MainActivity() : MainActivityBase() {
     private var scanWifiButton: Button? = null
 
-    // Injected status text view.
-    InjectView(R.id.txt_status) var statusTextView: TextView? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        super<Activity>.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         scanWifiButton = findViewById(R.id.btn_scan_wifi) as Button?
@@ -32,8 +26,7 @@ open class MainActivity() : Activity() {
             finish()
         })
 
-        // Setting status text view if not null.
-        statusTextView?.setText("Test status")
+        statusTextView?.setText("Injected status!")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
