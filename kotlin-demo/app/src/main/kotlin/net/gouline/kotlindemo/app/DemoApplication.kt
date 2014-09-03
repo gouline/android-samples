@@ -15,6 +15,6 @@ class DemoApplication() : Application() {
     override fun onCreate() {
         super<Application>.onCreate()
 
-        Log.d(TAG, BuildTypeConfig.LOG_MESSAGE)
+        //Log.d(TAG, BuildTypeConfig.LOG_MESSAGE)
     }
 }

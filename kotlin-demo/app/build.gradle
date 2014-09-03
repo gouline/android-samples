@@ -29,11 +29,10 @@ android {
         targetSdkVersion 19
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "net.gouline.kotlindemo.TestRunner"
     }
     buildTypes {
         debug {
-            runProguard true
+            runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
         }
