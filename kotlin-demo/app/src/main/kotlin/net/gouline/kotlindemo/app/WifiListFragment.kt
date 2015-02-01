@@ -27,17 +27,17 @@ open class WifiListFragment() : ListFragment() {
 
     private var emptyView: View? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_wifi_list, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super<ListFragment>.onViewCreated(view, savedInstanceState)
 
-        emptyView = view?.findViewById(R.id.progress) as View
+        emptyView = view.findViewById(R.id.progress)
 
-        setListAdapter(WifiListAdapter(getActivity()!!))
-        getListView()?.setEmptyView(emptyView)
+        setListAdapter(WifiListAdapter(getActivity()))
+        getListView().setEmptyView(emptyView)
     }
 
     override fun onResume() {
@@ -49,12 +49,12 @@ open class WifiListFragment() : ListFragment() {
         }
     }
 
-    override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
+    override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
         super<ListFragment>.onListItemClick(l, v, position, id)
 
         val activity = getActivity()
         if (activity is WifiActivity) {
-            val item = l?.getItemAtPosition(position) as WifiStation
+            val item = l.getItemAtPosition(position) as WifiStation
             activity.transitionToDetail(item)
         }
     }
@@ -90,21 +90,21 @@ open class WifiListFragment() : ListFragment() {
     class WifiListAdapter(context: Context) : ArrayAdapter<WifiStation>(context, 0) {
         val inflater = LayoutInflater.from(context)
 
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val item = getItem(position)
             val view = convertView ?: inflater.inflate(R.layout.list_item_wifi, parent, false)
 
-            val ssidTextView = view?.findViewById(R.id.txt_ssid) as TextView
-            ssidTextView.setText(item?.ssid)
+            val ssidTextView = view.findViewById(R.id.txt_ssid) as TextView
+            ssidTextView.setText(item.ssid)
 
-            val bssidTextView = view?.findViewById(R.id.txt_bssid) as TextView
-            bssidTextView.setText(item?.bssid)
+            val bssidTextView = view.findViewById(R.id.txt_bssid) as TextView
+            bssidTextView.setText(item.bssid)
 
-            val frequencyTextView = view?.findViewById(R.id.txt_frequency) as TextView
-            frequencyTextView.setText(getContext()?.getString(R.string.station_frequency, item?.frequency))
+            val frequencyTextView = view.findViewById(R.id.txt_frequency) as TextView
+            frequencyTextView.setText(getContext().getString(R.string.station_frequency, item.frequency))
 
-            val levelTextView = view?.findViewById(R.id.txt_level) as TextView
-            levelTextView.setText(getContext()?.getString(R.string.station_level, item?.level))
+            val levelTextView = view.findViewById(R.id.txt_level) as TextView
+            levelTextView.setText(getContext().getString(R.string.station_level, item.level))
 
             return view
         }

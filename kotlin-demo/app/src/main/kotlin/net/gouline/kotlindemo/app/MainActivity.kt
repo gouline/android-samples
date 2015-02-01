@@ -34,8 +34,8 @@ open class MainActivity() : MainActivityBase() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val id = item?.getItemId()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.getItemId()
         if (id == R.id.action_settings) {
             Toast.makeText(this, R.string.prompt_settings_not_implemented, Toast.LENGTH_SHORT).show();
             return true

@@ -49,13 +49,13 @@ open class WifiActivity() : Activity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         getMenuInflater().inflate(R.menu.wifi, menu)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val id = item?.getItemId()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.getItemId()
         if (id == R.id.action_refresh) {
             refreshList()
             return true
@@ -97,7 +97,7 @@ open class WifiActivity() : Activity() {
         transition(listFragment!!)
     }
 
-    fun transitionToDetail(item: WifiStation?) {
+    fun transitionToDetail(item: WifiStation) {
         detailFragment = WifiDetailFragment.newInstance()
         transition(detailFragment!!, add = true)
     }
