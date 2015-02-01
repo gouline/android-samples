@@ -1,9 +1,11 @@
 buildscript {
-    ext.kotlin_version = '0.8.11'
-    ext.rxjava_version = '0.20.2'
+    ext.kotlin_version = '0.10.195'
+    ext.rxjava_version = '0.20.7'
+
     repositories {
         mavenCentral()
     }
+
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
@@ -13,8 +15,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -26,19 +28,20 @@ android {
     defaultConfig {
         applicationId "net.gouline.kotlindemo"
         minSdkVersion 15
-        targetSdkVersion 19
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         debug {
-            runProguard true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
         }
 
         release {
-            runProguard true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
         }
@@ -56,8 +59,4 @@ dependencies {
 
     compile "com.netflix.rxjava:rxjava-core:$rxjava_version"
     compile "com.netflix.rxjava:rxjava-android:$rxjava_version"
-    compile("com.netflix.rxjava:rxjava-kotlin:$rxjava_version") {
-        // To avoid version conflicts.
-        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'
-    }
 }
