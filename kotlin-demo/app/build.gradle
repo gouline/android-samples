@@ -16,7 +16,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    buildToolsVersion '21.1.2'
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -55,7 +55,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    compile 'com.jakewharton:butterknife:5.1.2'
+    compile 'com.jakewharton:butterknife:6.1.0'
 
     compile "com.netflix.rxjava:rxjava-core:$rxjava_version"
     compile "com.netflix.rxjava:rxjava-android:$rxjava_version"
