@@ -1,7 +1,7 @@
-Lazy Drawables
-==============
+Drawables Sources
+=================
 
-Sample Android application using lazy drawables technique.
+Sample Android application using drawable sources technique.
 
 Read the full article [here][1].
 
