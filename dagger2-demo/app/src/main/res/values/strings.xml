@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">Dagger2 Demo</string>
+    <string name="activity_albums">Albums</string>
+
+    <string name="menu_search">Search</string>
+
+    <string name="search_label">Artist</string>
+    <string name="search_empty">Search for artists names to see albums</string>
+    <string name="search_progress">Searching&#8230;</string>
+
+</resources>
