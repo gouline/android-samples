@@ -1,8 +1,6 @@
 package net.gouline.dagger2demo;
 
-import android.app.Activity;
 import android.app.Application;
-import android.app.Service;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
@@ -34,18 +32,10 @@ public class DemoApplication extends Application {
     /**
      * Extracts application from support context types.
      *
-     * @param context Source context (application, activity, service).
+     * @param context Source context.
      * @return Application instance or {@code null}.
      */
     public static DemoApplication from(@NonNull Context context) {
-        Application application = null;
-        if (context instanceof Application) {
-            application = (Application) context;
-        } else if (context instanceof Activity) {
-            application = ((Activity) context).getApplication();
-        } else if (context instanceof Service) {
-            application = ((Service) context).getApplication();
-        }
-        return (DemoApplication) application;
+        return (DemoApplication) context.getApplicationContext();
     }
 }
