@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+apply from: '../jacoco.gradle'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "net.gouline.jacoco"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+    }
+    productFlavors {
+        blue {}
+
+        red {}
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    // Support
+    compile 'com.android.support:appcompat-v7:22.2.0'
+
+    // Injection
+    compile 'com.jakewharton:butterknife:6.1.0'
+
+    // Unit testing
+    testCompile "org.robolectric:robolectric:3.0-rc3"
+    testCompile "junit:junit:4.12"
+    testCompile "org.assertj:assertj-core:1.7.0"
+}
