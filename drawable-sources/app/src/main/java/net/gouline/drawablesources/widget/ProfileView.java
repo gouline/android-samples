@@ -10,16 +10,16 @@ import android.widget.TextView;
 import net.gouline.drawablesources.R;
 import net.gouline.drawablesources.model.Profile;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class ProfileView extends FrameLayout {
-    @InjectView(R.id.img_picture)
-    ImageView pictureImageView;
-    @InjectView(R.id.txt_name)
-    TextView nameTextView;
-    @InjectView(R.id.txt_type)
-    TextView typeTextView;
+    @Bind(R.id.img_picture)
+    ImageView mPictureImageView;
+    @Bind(R.id.txt_name)
+    TextView mNameTextView;
+    @Bind(R.id.txt_type)
+    TextView mTypeTextView;
 
     public ProfileView(Context context) {
         this(context, null);
@@ -31,12 +31,12 @@ public class ProfileView extends FrameLayout {
 
     public ProfileView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        ButterKnife.inject(this, LayoutInflater.from(context).inflate(R.layout.view_profile, this));
+        ButterKnife.bind(this, LayoutInflater.from(context).inflate(R.layout.view_profile, this));
     }
 
     public void update(Profile profile) {
-        profile.getPicture().applyTo(getContext(), pictureImageView);
-        nameTextView.setText(profile.getName());
-        typeTextView.setText(profile.getClass().getSimpleName());
+        profile.getPicture().applyTo(getContext(), mPictureImageView);
+        mNameTextView.setText(profile.getName());
+        mTypeTextView.setText(profile.getClass().getSimpleName());
     }
 }

@@ -6,15 +6,15 @@ import net.gouline.drawablesources.util.DrawableSource;
 import java.io.Serializable;
 
 public class Contact implements Profile, Serializable {
-    private final String name;
+    private final String mName;
 
     public Contact(String name) {
-        this.name = name;
+        mName = name;
     }
 
     @Override
     public String getName() {
-        return name;
+        return mName;
     }
 
     @Override
