@@ -19,10 +19,10 @@ project.afterEvaluate {
                 sourceName = "${productFlavorName}${sourceName.capitalize()}"
             }
             def targetName = "${sourceName.capitalize()}"
-            def testTaskName = "test${sourceName.capitalize()}"
+            def testTaskName = "test${sourceName.capitalize()}UnitTest"
             def coverageTaskName = "${testTaskName}Coverage"
 
-            // Create coverage task of form 'testFlavorTypeCoverage' depending on 'testFlavorType'
+            // Create coverage task of form 'testFlavorTypeCoverage' depending on 'testFlavorTypeUnitTest'
             task "$coverageTaskName" (type:JacocoReport, dependsOn: "$testTaskName") {
                 group = "Reporting"
                 description = "Generate Jacoco coverage reports on the ${targetName} build."
