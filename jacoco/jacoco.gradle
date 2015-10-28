@@ -33,6 +33,7 @@ project.afterEvaluate {
                         excludes: ['**/R.class',
                                    '**/R$*.class',
                                    '**/*$ViewInjector*.*',
+                                   '**/*$ViewBinder*.*',
                                    '**/BuildConfig.*',
                                    '**/Manifest*.*']
                 )
