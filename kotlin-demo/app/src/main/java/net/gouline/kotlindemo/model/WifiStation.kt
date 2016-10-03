@@ -1,20 +1,19 @@
 package net.gouline.kotlindemo.model
 
-import java.io.Serializable
 import android.net.wifi.ScanResult
-import java.util.ArrayList
+import java.io.Serializable
 
 /**
  * Data container for a Wi-Fi base station.
- *
- * @author Mike Gouline
  */
 data class WifiStation(
         val ssid: String?,
         val bssid: String? = null,
         val frequency: Int? = null,
         val level: Int? = null) : Serializable {
-    class object {
+
+    companion object {
+
         /**
          * Creates a new instance from a scan result.
          *
@@ -35,11 +34,7 @@ data class WifiStation(
          * @param srs List of scan results.
          */
         fun newList(srs: List<ScanResult>): List<WifiStation> {
-            val stations = ArrayList<WifiStation>()
-            for (sr in srs) {
-                stations.add(newInstance(sr))
-            }
-            return stations
+            return srs.map { newInstance(it) }
         }
     }
 }

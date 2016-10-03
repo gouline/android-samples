@@ -1,17 +1,15 @@
 package net.gouline.kotlindemo
 
 import android.test.AndroidTestCase
-
-import net.gouline.kotlindemo.model.WifiStation
 import junit.framework.Assert
+import net.gouline.kotlindemo.model.WifiStation
 
 /**
  * Test case for {@link net.gouline.kotlindemo.model.WifiStation}.
- *
- * @author Mike Gouline
  */
-public class WifiStationTest() : AndroidTestCase() {
-    public fun testModel() {
+class WifiStationTest() : AndroidTestCase() {
+
+    fun testModel() {
         val station = WifiStation("ssid", "bssid", 5000, 5)
         Assert.assertEquals("ssid", station.ssid)
         Assert.assertEquals("bssid", station.bssid)

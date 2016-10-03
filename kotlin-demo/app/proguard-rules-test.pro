@@ -16,22 +16,10 @@
 #   public *;
 #}
 
-# Global
--keepattributes Signature
+-dontwarn com.squareup.javawriter.JavaWriter
+-dontwarn sun.misc.Unsafe
+-dontwarn org.hamcrest.**
+-dontwarn junit.**
 
-# Models
--keepclasseswithmembers class net.gouline.kotlindemo.model.** { *; }
--keepclasseswithmembernames class net.gouline.kotlindemo.model.** { *; }
-
-# Support
--dontwarn android.support.v7.**
--keep class android.support.v7.** { *; }
--keep interface android.support.v7.** { *; }
-
-# Realm
--keep class io.realm.annotations.RealmModule
--keep @io.realm.annotations.RealmModule class *
--keep class io.realm.internal.Keep
--keep @io.realm.internal.Keep class * { *; }
--dontwarn javax.**
--dontwarn io.realm.**
+-dontwarn org.junit.**
+-dontwarn android.support.test.**

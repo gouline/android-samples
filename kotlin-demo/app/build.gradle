@@ -1,62 +1,63 @@
 buildscript {
-    ext.kotlin_version = '0.10.195'
-    ext.rxjava_version = '0.20.7'
-
-    repositories {
-        mavenCentral()
-    }
-
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion"
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-        debug.java.srcDirs += 'src/debug/kotlin'
-        release.java.srcDirs += 'src/release/kotlin'
-        androidTest.java.srcDirs += 'src/androidTest/kotlin'
-    }
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
 
     defaultConfig {
-        applicationId "net.gouline.kotlindemo"
+        applicationId 'net.gouline.kotlindemo'
         minSdkVersion 15
-        targetSdkVersion 21
+        targetSdkVersion androidCompileSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName '1.0'
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                    'proguard-rules.pro'
+                    'proguard-rules.pro',
+                    'proguard-rules-debug.pro'
+            testProguardFile('proguard-rules-test.pro')
         }
 
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                    'proguard-rules.pro'
+                    'proguard-rules.pro',
+                    'proguard-rules-release.pro'
         }
     }
 }
 
-repositories {
-    mavenCentral()
+kapt {
+    generateStubs = true
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // Android/Google
+    compile "com.android.support:appcompat-v7:$libAndroidSupportVersion"
 
-    compile 'com.jakewharton:butterknife:6.1.0'
+    // Kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
 
-    compile "com.netflix.rxjava:rxjava-core:$rxjava_version"
-    compile "com.netflix.rxjava:rxjava-android:$rxjava_version"
+    // Architecture
+    compile "io.reactivex:rxjava:$libRxJavaVersion"
+    compile "io.reactivex:rxandroid:$libRxAndroidVersion"
+
+    // Unit tests
+    testCompile "junit:junit:$libJUnitVersion"
+    testCompile "org.robolectric:robolectric:$libRobolectricVersion"
+    testCompile "org.robolectric:shadows-support-v4:$libRobolectricVersion"
+    testCompile "org.mockito:mockito-core:$libMockitoVersion"
 }

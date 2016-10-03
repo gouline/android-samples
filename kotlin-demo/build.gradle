@@ -1,19 +1,40 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
+    ext.kotlinEapRepo = repositories.maven {
+        url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1'
+    }
+
     repositories {
         jcenter()
+        add rootProject.ext.kotlinEapRepo
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.1'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:2.2.0'
     }
 }
 
+ext {
+    androidBuildToolsVersion = '24.0.2'
+    androidCompileSdkVersion = 24
+
+    kotlinVersion = '1.1-M01'
+
+    libAndroidSupportVersion = '24.2.1'
+
+    libRxJavaVersion = '1.2.0'
+    libRxAndroidVersion = '1.2.1'
+
+    libJUnitVersion = '4.12'
+    libRobolectricVersion = '3.0'
+    libMockitoVersion = '1.10.19'
+}
+
 allprojects {
+    buildscript.repositories {
+        jcenter()
+        add rootProject.ext.kotlinEapRepo
+    }
     repositories {
         jcenter()
+        add rootProject.ext.kotlinEapRepo
     }
 }
